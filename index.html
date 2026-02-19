@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>xyz Bakery - the best German pastries!</title>
+    <link rel="stylesheet" href="assets/css/normalize.css" />
+    <link rel="stylesheet" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="assets/css/header.css" />
+    <link rel="stylesheet" href="assets/css/pages/landing.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;700&family=Shadows+Into+Light&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" href="assets/img/logo2.png" type="image/x-icon" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Ramzan animation script -->
+    <script src="assets/js/ramzan-animation.js"></script>
+  </head>
+  <body>
+    <!-- Ramadan Animation -->
+    <div class="ramzan-overlay" id="ramzanOverlay">
+      <div class="ramzan-container">
+        <div class="crescent">🌙</div>
+        <div class="stars">✨✨✨</div>
+        <div class="ramzan-message">
+          <h2>Ramzan Mubarak!</h2>
+          <p>May your month be filled with peace and blessings.</p>
+          <button class="ramzan-close" id="ramzanClose">🌙 Close 🌙</button>
+        </div>
+      </div>
+    </div>
+    
+    <header class="line-after">
+      <div class="container-flex header-container">
+        <div class="header-identity">
+          <img src="assets/img/logo.svg" alt="" class="header-logo" />
+          <p class="header-name">xyz Bakery</p>
+        </div>
+        <nav>
+          <div class="links">
+            <div class="links-blockcontainer container">
+              <ul class="links-container container-flex">
+                <img
+                  src="assets/img/header/x.svg"
+                  alt=""
+                  class="links-x"
+                  onclick="headerMobileMenu()"
+                />
+                <li class="links-item container-flex">
+                  <img
+                    src="assets/img/header/home.svg"
+                    alt=""
+                    class="links-item-icon"
+                  />
+                  <a href="index.html" class="links-item-link line-after"
+                    >Home</a
+                  >
+                </li>
+                <li class="links-item container-flex">
+                  <img
+                    src="assets/img/header/about-us.svg"
+                    alt=""
+                    class="links-item-icon"
+                  />
+                  <a href="aboutus.html" class="links-item-link line-after"
+                    >About Us</a
+                  >
+                </li>
+                <li class="links-item container-flex">
+                  <img
+                    src="assets/img/header/products-icon.svg"
+                    alt=""
+                    class="links-item-icon"
+                  />
+                  <a href="products.html" class="links-item-link line-after"
+                    >Products</a
+                  >
+                </li>
+                <li class="links-item container-flex">
+                  <img
+                    src="assets/img/header/blog.svg"
+                    alt=""
+                    class="links-item-icon"
+                  />
+                  <a href="blog.html" class="links-item-link line-after"
+                    >Blog</a
+                  >
+                </li>
+                <li class="links-item container-flex">
+                  <img
+                    src="assets/img/header/contact-us.svg"
+                    alt=""
+                    class="links-item-icon"
+                  />
+                  <a href="contactus.html" class="links-item-link line-after"
+                    >Contact Us</a
+                  >
+                </li>
+                <li class="links-item container-flex">
+                  <img
+                    src="assets/img/header/cart.svg"
+                    alt=""
+                    class="links-item-icon"
+                  />
+                  <a href="cart.html" class="links-item-link line-after">
+                    Cart <span class="cart-count" style="display:none; background-color: #ff6b6b; color: white; border-radius: 50%; padding: 2px 6px; font-size: 12px; margin-left: 5px;">0</span>
+                  </a>
+                </li>
+                <li class="links-item container-flex">
+                  <img
+                    src="assets/img/header/dashboard.svg"
+                    alt=""
+                    class="links-item-icon"
+                  />
+                  <a href="Dashboard.html" class="links-item-link line-after"
+                    >Dashboard</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <img
+            src="assets/img/header/burger.svg"
+            alt=""
+            onclick="headerMobileMenu()"
+            class="header-burger"
+          />
+        </nav>
+      </div>
+      <script src="assets/js/mobile-header.js"></script>
+    </header>
+    <section class="main">
+      <div class="container">
+        <div class="main-callactioncontainer">
+          <div class="main-callaction">
+            <span class="main-callaction-heading">
+              <h1
+                class="main-callaction-heading-item main-callaction-heading-item-accent"
+                
+              >
+                Welcome to delicious bakery
+              </h1>
+              <h1 class="main-callaction-heading-item">Taste in every bite</h1>
+            </span>
+            
+            
+            <div class="images-container">
+              <div class="image-with-label">
+                <a href="products.html"><img class="main-image" src="assets/img/landing/image1.png" alt="" /></a>
+                <a href="products.html"><p class="image-label">chocolate cake</p></a>
+              </div>
+              <div class="image-with-label">
+                <a href="products.html"><img class="main-image" src="assets/img/landing/image2.png" alt="" /></a>
+                <a href="products.html"><p class="image-label">Chocolate cream cupcake</p></a>
+              </div>
+              <div class="image-with-label">
+                <a href="products.html"><img class="main-image" src="assets/img/landing/image3.png" alt="" /></a>
+                <a href="products.html"><p class="image-label">Bavarian cream cheesecake</p></a>
+              </div>
+              <div class="image-with-label">
+                <a href="products.html"><img class="main-image" src="assets/img/products/products/3.png" alt="" /></a>
+                <a href="products.html"><p class="image-label">Red Velvet Cupcake</p></a>
+              </div>
+              <div class="image-with-label">
+                <a href="products.html"><img class="main-image" src="assets/img/products/products/4.png" alt="" /></a>
+                <a href="products.html"><p class="image-label">Chocolate Sprinkle Cupcake</p></a>
+              </div>
+            </div>
+            <form action="" class="main-callaction-form">
+             
+              
+              
+              
+                
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="assets/js/form-script.js"></script>
+
+  </body>
+</html>

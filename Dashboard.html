@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="Dashboard.css">
+</head>
+<body>
+
+<header class="topbar">
+  <h1>Dashboard</h1>
+  <nav>
+    <a href="index.html">🏠 Home</a>
+    <a href="#">📊 Analytics</a>
+    <a href="#">🗂 Tasks</a>
+    <a href="#">⚙ Settings</a>
+    <img src="https://i.imgur.com/6VBx3io.png" alt="profile">
+  </nav>
+</header>
+
+<div class="container">
+
+  <!-- STAT CARDS -->
+  <div class="stats">
+    <div class="stat red">
+      <h3>Total Sales</h3>
+      <h2>₹1,25,000</h2>
+      <span>+12%</span>
+    </div>
+
+    <div class="stat yellow">
+      <h3>New Users</h3>
+      <h2>850</h2>
+      <span>+8%</span>
+    </div>
+
+    <div class="stat light">
+      <h3>Tasks Pending</h3>
+      <h2>23</h2>
+      <span class="down">-5%</span>
+    </div>
+
+    <div class="stat teal">
+      <h3>Support Tickets</h3>
+      <h2>18</h2>
+      <span>+10%</span>
+    </div>
+  </div>
+
+  <!-- MIDDLE -->
+  <div class="middle">
+    <div class="card large">
+      <h3>Sales Overview</h3>
+      <!-- chart container -->
+      <canvas id="salesChart" width="400" height="200"></canvas>
+    </div>
+
+    <div class="card">
+      <h3>Task List</h3>
+      <ul class="tasks">
+        <li>✔ Design New Banner</li>
+        <li>✔ Update Report</li>
+        <li>⬜ Client Meeting</li>
+        <li>⬜ Fix Website Issue</li>
+      </ul>
+      <button>Add Task</button>
+    </div>
+  </div>
+
+  <!-- BOTTOM -->
+  <div class="bottom">
+    <div class="card">
+      <h3>Recent Activities</h3>
+      <ul class="activity">
+        <li>Rahul completed a task <span>15 min ago</span></li>
+        <li>New user Ananya joined <span>1 hour ago</span></li>
+        <li>Server issue resolved <span>2 hours ago</span></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Support Tickets</h3>
+      <div class="tickets">
+        <div class="circle open">8<br><small>Open</small></div>
+        <div class="circle closed">10<br><small>Closed</small></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- chart script -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  async function loadSalesData() {
+    try {
+      // build base URL in case page is loaded from file:// or different origin
+      const baseOrigin = window.location.origin && window.location.origin !== 'null'
+        ? window.location.origin
+        : 'http://localhost:5000'; // adjust if your API runs elsewhere
+
+      console.log('fetching sales from', baseOrigin + '/api/orders/sales');
+      const res = await fetch(baseOrigin + '/api/orders/sales', {
+        credentials: 'include',
+      });
+      if (!res.ok) throw new Error('Network response was not ok: ' + res.status);
+      const body = await res.json();
+      if (!body.success) throw new Error('API returned error');
+
+      // build arrays for chart
+      const labels = [];
+      const data = [];
+      // months 1-12, fill missing with 0
+      const monthMap = body.stats.reduce((acc, cur) => {
+        acc[cur._id] = cur.total;
+        return acc;
+      }, {});
+      for (let m = 1; m <= 12; m++) {
+        labels.push(new Date(0, m - 1).toLocaleString('default', { month: 'short' }));
+        data.push(monthMap[m] || 0);
+      }
+
+      const ctx = document.getElementById('salesChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels,
+          datasets: [{
+            label: 'Monthly Sales (₹)',
+            data,
+            backgroundColor: 'rgba(54,162,235,0.2)',
+            borderColor: 'rgba(54,162,235,1)',
+            borderWidth: 2,
+            tension: 0.3
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    } catch (err) {
+      console.error('Failed to load sales data', err);
+    }
+  }
+
+  // kick off on page load
+  loadSalesData();
+</script>
+
+</body>
